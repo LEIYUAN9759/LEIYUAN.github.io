@@ -249,6 +249,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/git学习笔记2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="雷源">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog_logo2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="啰里啰嗦的圈圈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/05/git学习笔记2/" itemprop="url">git学习笔记2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-05T10:07:06+08:00">
+                2018-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>学习完git在本地的操作后，就要涉及到远端仓库的学习了，所以有关git的第二篇笔记就从远端仓库开始写起。</p>
+<h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><p>关于远程仓库的概念这里就不在赘述了，需要注意的是在使用GitHub时，我们需要添加ssh key，操作很简单。<br>使用远端仓库首先我们需要在GitHub或者码云上建立一个新的仓库，然后按照提示在本地仓库使用命令<code>git remote add origin git@github.com:leiyuan9759/learngit.git</code><br>,接着就能够把本地库的所有东西推送到远程仓库中去，命令为<code>git push -u origin master</code>,由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。从现在起，只要本地作了提交，就可以通过命令：<code>git push origin master</code></p>
+<ul>
+<li>对于开发者，一般来讲我们都是现有远程库，然后从远程仓库进行克隆，我们可以采用<code>git clone git@github.com:leiyuan9759/gitskills.git</code><br>这样就可以把代码copy到我们的机器上来。</li>
+</ul>
+<hr>
+<h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3><p>git的协同操作，我感觉最复杂的就是分支管理了，关于git分支的讲解可以参考<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000" target="_blank" rel="noopener">廖雪峰git笔记之创建与合并分支</a>。<br>git 分支操作</p>
+<ul>
+<li>创建分支<br>我们创建dev分支，然后切换到dev分支：<code>git checkout -b dev</code>,相当于以下两条命令：<code>git branch dev</code>,<code>git checkout dev</code></li>
+<li>查看分支 <code>git branch</code>,git branch命令会列出所有分支，当前分支前面会标一个*号</li>
+<li>切换分支 <code>git checkout master</code>,切换为master分支。</li>
+<li>合并分支 <code>git merge dev</code>,git merge命令用于合并指定分支到当前分支。</li>
+<li>删除分支 <code>git branch -d dev</code></li>
+<li>合并分支的策略<br>通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。命令为<code>git merge --no-ff -m &quot;merge with no-ff&quot; dev</code>,其中-m 是添加的备注信息</li>
+</ul>
+<hr>
+<h3 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h3><p>多人协作的工作模式通常是这样：<br>首先，可以试图用<code>git push origin &lt;branch-name&gt;</code>推送自己的修改；<br>如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；<br>如果合并有冲突，则解决冲突，并在本地提交；<br>没有冲突或者解决掉冲突后，再用<code>git push origin &lt;branch-name&gt;</code>推送就能成功！<br>如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令<code>git branch --set-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</code>。</p>
+<p>多人协助常用命令：</p>
+<ul>
+<li>查看远程库信息，使用git remote -v；本地新建的分支如果不推送到远程，对其他人就是不可见的；</li>
+<li>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</li>
+<li>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致</li>
+<li>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；</li>
+<li>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</li>
+</ul>
+<hr>
+<p> 关于git的使用还有打个标签的操作，感觉比较简单，就不写了。<br> git的学习到此就结束了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/git学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -422,7 +572,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -435,7 +585,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
