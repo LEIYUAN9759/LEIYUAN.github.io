@@ -259,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/10/机器学习/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/10/机器学习-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="雷源">
@@ -278,7 +278,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/10/机器学习/" itemprop="url">机器学习</a></h1>
+                <a class="post-title-link" href="/2018/10/10/机器学习-1/" itemprop="url">机器学习</a></h1>
         
 
         <div class="post-meta">
@@ -341,7 +341,8 @@
 <p>这么说起来实在是太抽象了,我们举个栗子演示一下:<br>有这么一个列表<br><code>[{&#39;city&#39;: &#39;北京&#39;,&#39;temperature&#39;:100}
 {&#39;city&#39;: &#39;上海&#39;,&#39;temperature&#39;:60}
 {&#39;city&#39;: &#39;深圳&#39;,&#39;temperature&#39;:30}]</code><br>只需要通过一下几行代码,这个字典就可以被转换成numpy数组啦<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_extraction <span class="keyword">import</span> DictVectorizer</span><br><span class="line">dict = DictVectorizer(sparse=<span class="keyword">False</span>)</span><br><span class="line"><span class="comment"># 调用fit_transform</span></span><br><span class="line">data = dict.fit_transform([&#123;<span class="string">'city'</span>: <span class="string">'北京'</span>,<span class="string">'temperature'</span>: <span class="number">100</span>&#125;, &#123;<span class="string">'city'</span>: <span class="string">'上海'</span>,<span class="string">'temperature'</span>:<span class="number">60</span>&#125;, &#123;<span class="string">'city'</span>: <span class="string">'深圳'</span>,<span class="string">'temperature'</span>: <span class="number">30</span>&#125;])</span><br><span class="line">print(dict.get_feature_names())</span><br><span class="line">print(dict.inverse_transform(data))</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure></p>
-<p>这里数组采用的是one_hot编码方式,这里也举个小例子来表示一下,这个难以用语言来形容的编码. 首先,我们有如图的这样一个分类<br><img src="../images/one_hot1.png" alt="blockchain"> <img src="../images/one_hot2.png" alt="blockchain">,这样就明白了吧.</p>
+<p>这里数组采用的是one_hot编码方式,这里也举个小例子来表示一下,这个难以用语言来形容的编码. 首先,我们有如图的这样一个分类</p>
+<p><img src="/2018/10/10/机器学习-1/../images/one_hot1.png" alt="blockchain"> <img src="/2018/10/10/机器学习-1/../images/one_hot2.png" alt="blockchain">,这样就明白了吧.</p>
 <h4 id="文本特征抽取"><a href="#文本特征抽取" class="headerlink" title="文本特征抽取"></a>文本特征抽取</h4><p>文本特征抽取调用的类<code>sklearn.feature_extraction.text.CountVectorizer()</code><br>类似的CountVectorizer的语法为:<br><code>CountVectorizer(max_df=1.0,min_df=1,....)</code>,返回词频矩阵,这里的max_df和min_df有整数和小数两种形式,<br>在其中包含的方法有:</p>
 <ul>
 <li><code>CountVectorizer.fit_transform(x)</code> x:为字典或者包含字典的迭代器 返回值为一个sparse矩阵</li>
@@ -352,7 +353,7 @@
 <p>当然,这里只能处理英文,因为文本抽取默认是按照空格来进行分词的,如果我们要对中文来进行文本特征抽取,首先要使用jieba来分词,并拼成由空格分隔的字符串. 举个大栗子:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> CountVectorizer</span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cutword</span><span class="params">()</span>:</span></span><br><span class="line">    con1 = jieba.cut(<span class="string">"今天很残酷，明天更残酷，后天很美好，但绝对大部分是死在明天晚上，所以每个人不要放弃今天。"</span>)</span><br><span class="line">    con2 = jieba.cut(<span class="string">"我们看到的从很远星系来的光是在几百万年之前发出的，这样当我们看到宇宙时，我们是在看它的过去。"</span>)</span><br><span class="line">    con3 = jieba.cut(<span class="string">"如果只用一种方式了解某样事物，你就不会真正了解它。了解事物真正含义的秘密取决于如何将其与我们所了解的事物相联系。"</span>)</span><br><span class="line">    <span class="comment"># 转换成列表</span></span><br><span class="line">    content1 = list(con1)</span><br><span class="line">    content2 = list(con2)</span><br><span class="line">    content3 = list(con3)</span><br><span class="line">    <span class="comment"># 吧列表转换成字符串</span></span><br><span class="line">    c1 = <span class="string">' '</span>.join(content1)</span><br><span class="line">    c2 = <span class="string">' '</span>.join(content2)</span><br><span class="line">    c3 = <span class="string">' '</span>.join(content3)</span><br><span class="line">    <span class="keyword">return</span> c1, c2, c3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hanzivec</span><span class="params">()</span>:</span></span><br><span class="line">    c1, c2, c3 = cutword()</span><br><span class="line">    print(c1, c2, c3)</span><br><span class="line">    cv = CountVectorizer()</span><br><span class="line">    data = cv.fit_transform([c1, c2, c3])</span><br><span class="line">    print(cv.get_feature_names())</span><br><span class="line">    print(data.toarray())</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">        hanzivec()</span><br></pre></td></tr></table></figure></p>
 <h3 id="特征处理"><a href="#特征处理" class="headerlink" title="特征处理"></a>特征处理</h3><p>通过特定的统计方法（数学方法）将数据转换成算法要求的数据<br>特征处理的方法主要有:归一化,标准化</p>
 <h5 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h5><p>归一化首先在特征（维度）非常多的时候，可以防止某一维或某几维对数据影响过大，也是为了把不同来源的数据统一到一个参考区间下，这样比较起来才有意义，其次可以程序可以运行更快。 例如：一个人的身高和体重两个特征，假如体重50kg，身高175cm,由于两个单位不一样，数值大小不一样。如果比较两个人的体型差距时，那么身高的影响结果会比较大.<br>归一化数学上已经学过很多次了,这里就直接给出scikit_learn的相关操作.<br>归一化API为<code>sklearn.preprocessing.MinMaxScaler</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler</span><br><span class="line">mm = MinMaxScaler(feature_range=(<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line">data = mm.fit_transform([[<span class="number">90</span>,<span class="number">2</span>,<span class="number">10</span>,<span class="number">40</span>],[<span class="number">60</span>,<span class="number">4</span>,<span class="number">15</span>,<span class="number">45</span>],[<span class="number">75</span>,<span class="number">3</span>,<span class="number">13</span>,<span class="number">46</span>]])</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure></p>
-<h5 id="标准化"><a href="#标准化" class="headerlink" title="标准化"></a>标准化</h5><p>标准化是通过对原始数据进行变换把数据变换到均值为0,方差为1范围内,处理公式为<img src="../images/标准化.png" alt="blockchain">,其中μ是样本的均值，σ是样本的标准差，它们可以通过现有的样本进行估计，在已有的样本足够多的情况下比较稳定，适合嘈杂的数据场景.<br>sklearn标准化API:<code>scikit-learn.preprocessing.StandardScaler</code></p>
+<h5 id="标准化"><a href="#标准化" class="headerlink" title="标准化"></a>标准化</h5><p>标准化是通过对原始数据进行变换把数据变换到均值为0,方差为1范围内,处理公式为<img src="/2018/10/10/机器学习-1/../images/标准化.png" alt="blockchain">,其中μ是样本的均值，σ是样本的标准差，它们可以通过现有的样本进行估计，在已有的样本足够多的情况下比较稳定，适合嘈杂的数据场景.<br>sklearn标准化API:<code>scikit-learn.preprocessing.StandardScaler</code></p>
 <p>其中包含的方法有,- <code>StandardScaler.mean_</code>返回原始数据每列的平均值</p>
 <ul>
 <li><code>StandardScaler.std_</code>, 原始数据每列的方差</li>
@@ -362,7 +363,173 @@
 <p>(1)填充缺失值<br>使用sklearn.preprocessing中的Imputer类进行数据的填充.</p>
 <p>具体的用法为<code>Imputer(missing_values=&#39;NaN&#39;, strategy=&#39;mean&#39;, axis=0)</code>,同样举个栗子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> Imputer</span><br><span class="line">im = Imputer(missing_values=<span class="string">'NaN'</span>, strategy=<span class="string">'mean'</span>, axis=<span class="number">0</span>)</span><br><span class="line">data = im.fit_transform([[<span class="number">1</span>, <span class="number">2</span>], [np.nan, <span class="number">3</span>], [<span class="number">7</span>, <span class="number">6</span>]])</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure></p>
 <p>(2)替换缺失值<br>使用pandas中的fillna来填充<br>数据降维也是我们在特征预处理中经常进行的操作,一般我们使用成分分析法PCA( Principal component analysis）。他的特点是保存数据集中对方差影响最大的那些特征，但是PCA极其容易受到数据中特征范围影响，所以在运用PCA前一定要做特征标准化，这样才能保证每维度特征的重要性等同。</p>
-<h5 id="降维"><a href="#降维" class="headerlink" title="降维"></a>降维</h5><p>数据降维也是我们在特征预处理中经常进行的操作,一般我们使用成分分析法PCA( Principal component analysis)。<br>这里的降维只是特征数量的减少,和我们想象中的不一样哦.<br><img src="../images/水壶.png" alt="blockchain"><br>我们可以形象的利用这个水壶来举例子,PCA法作用就是如何在在信息损失最小的情况下,用一张二维图来表示水壶.</p>
+<h5 id="降维"><a href="#降维" class="headerlink" title="降维"></a>降维</h5><p>数据降维也是我们在特征预处理中经常进行的操作,一般我们使用成分分析法PCA( Principal component analysis)。<br>这里的降维只是特征数量的减少,和我们想象中的不一样哦.<br><img src="/2018/10/10/机器学习-1/../images/水壶.png" alt="blockchain"><br>我们可以形象的利用这个水壶来举例子,PCA法作用就是如何在在信息损失最小的情况下,用一张二维图来表示水壶.</p>
+<p>  PCA的特点是保存数据集中对方差影响最大的那些特征，但是PCA极其容易受到数据中特征范围影响，所以在运用PCA前一定要做特征标准化，这样才能保证每维度特征的重要性等同。<br>PCA的用法:  <code>PCA(n_components=None)</code>,其中n_components是指我们保留信息的百分比,比如0.9,表示降维信息的保留程度为90%</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line">pca = PCA(n_components=<span class="number">0.9</span>)</span><br><span class="line">data = pca.fit_transform([[<span class="number">2</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">6</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">8</span>],[<span class="number">5</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">1</span>]])</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure>
+<h4 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h4><p>特征选择是为了减少冗余,减小计算机的性能消耗(因为部分特征相关度高),同时消除部分噪点特征.在所有特征中选择部分作为训练集特征.<br>主要有以下三种方法:</p>
+<ul>
+<li>过滤式: VarianceThreshold</li>
+<li>嵌入式：正则化(回归分析时候会用到)</li>
+<li>包裹式</li>
+</ul>
+<p>过滤式VarianceThreshold 是特征选择中的一项基本方法。它会移除所有方差不满足阈值的特征。默认设置下，它将移除所有方差为0的特征，即那些在所有样本中数值完全相同的特征。<br>假设我们要移除那些超过80%的数据都为1或0的特征.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> VarianceThreshold</span><br><span class="line">X = [[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>]]</span><br><span class="line">sel = VarianceThreshold(threshold=(<span class="number">.8</span> * (<span class="number">1</span> - <span class="number">.8</span>)))</span><br><span class="line">sel.fit_transform(X)</span><br><span class="line">array([[<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">1</span>]])</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/10/机器学习-1/机器学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="雷源">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog_logo2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="啰里啰嗦的圈圈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/10/机器学习-1/机器学习/" itemprop="url">机器学习</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-10T18:48:27+08:00">
+                2018-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>机器学习似乎是个很火的话题,人工智能更是浪潮之巅.而我既然学习了Python当然不能免俗,在国庆假期里偷偷看了一些机器学习的基本算法.发现以前自己感觉很专业的名词,比如朴素贝叶斯,随机森林,逻辑回归等等,在前人的基础上,调用API完成功能的代码,居然只有短短的几行.当然这也有可能是我只是刚刚看了一下scikitlearn这种封装的比较好的模块.接下来要把TensorFlow也粗浅的学一下,继续探索一下机器学习这个高深的领域.</p>
+<h3 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h3><p>从数据中抽取出来的对预测结果有用的信息，通过专业的技巧进行数据处理，使得特征能在机器学习算法中发挥更好的作用。在数据获取的阶段 最初的原始特征数据集可能太大，或者信息冗余，因此在机器学习的应用中，一个初始步骤就是选择特征的子集，或构建一套新的特征集，减少功能来促进算法的学习，提高泛化能力和可解释性,这也就是我们所说的特征工程。<br>在特征工程阶段,我们主要的工作就是对数据的特征进行抽取,然后进行特征的预处理,最后进行特征的选择,done~~ 数据就处理成我们需要的格式啦!<br>今天就来介绍一下特征工程的各个阶段的各种操作.</p>
+<h3 id="特征抽取"><a href="#特征抽取" class="headerlink" title="特征抽取"></a>特征抽取</h3><h4 id="字典特征抽取"><a href="#字典特征抽取" class="headerlink" title="字典特征抽取"></a>字典特征抽取</h4><p>字典特征抽取调用的类:<code>sklearn.feature_extraction.DictVectorizer</code>.<br>将映射列表转换为Numpy数组或scipy.sparse矩阵<br>DictVectorizer的语法为:<br><code>DictVectorizer(saprse=True,....)</code><br>在其中包含的方法有:</p>
+<ul>
+<li><code>DictVectorizer.fit_transform(x)</code> x:为字典或者包含字典的迭代器 返回值为一个sparse矩阵</li>
+<li><code>DictVectorizer.fit_transform(x)</code><br>x: array数组或者是sparse矩阵 返回值为转换之前的数据格式</li>
+<li><code>DictVectorizer.get_feature_names()</code> 返回类别名称</li>
+</ul>
+<p>这么说起来实在是太抽象了,我们举个栗子演示一下:<br>有这么一个列表<br><code>[{&#39;city&#39;: &#39;北京&#39;,&#39;temperature&#39;:100}
+{&#39;city&#39;: &#39;上海&#39;,&#39;temperature&#39;:60}
+{&#39;city&#39;: &#39;深圳&#39;,&#39;temperature&#39;:30}]</code><br>只需要通过一下几行代码,这个字典就可以被转换成numpy数组啦<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_extraction <span class="keyword">import</span> DictVectorizer</span><br><span class="line">dict = DictVectorizer(sparse=<span class="keyword">False</span>)</span><br><span class="line"><span class="comment"># 调用fit_transform</span></span><br><span class="line">data = dict.fit_transform([&#123;<span class="string">'city'</span>: <span class="string">'北京'</span>,<span class="string">'temperature'</span>: <span class="number">100</span>&#125;, &#123;<span class="string">'city'</span>: <span class="string">'上海'</span>,<span class="string">'temperature'</span>:<span class="number">60</span>&#125;, &#123;<span class="string">'city'</span>: <span class="string">'深圳'</span>,<span class="string">'temperature'</span>: <span class="number">30</span>&#125;])</span><br><span class="line">print(dict.get_feature_names())</span><br><span class="line">print(dict.inverse_transform(data))</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure></p>
+<p>这里数组采用的是one_hot编码方式,这里也举个小例子来表示一下,这个难以用语言来形容的编码. 首先,我们有如图的这样一个分类</p>
+<p><img src="/2018/10/10/机器学习-1/机器学习/./one_hot1.png" alt="blockchain"> <img src="/2018/10/10/机器学习-1/机器学习/./one_hot2.png" alt="blockchain">,这样就明白了吧.</p>
+<h4 id="文本特征抽取"><a href="#文本特征抽取" class="headerlink" title="文本特征抽取"></a>文本特征抽取</h4><p>文本特征抽取调用的类<code>sklearn.feature_extraction.text.CountVectorizer()</code><br>类似的CountVectorizer的语法为:<br><code>CountVectorizer(max_df=1.0,min_df=1,....)</code>,返回词频矩阵,这里的max_df和min_df有整数和小数两种形式,<br>在其中包含的方法有:</p>
+<ul>
+<li><code>CountVectorizer.fit_transform(x)</code> x:为字典或者包含字典的迭代器 返回值为一个sparse矩阵</li>
+<li><code>CountVectorizer.fit_transform(x)</code><br>x: array数组或者是sparse矩阵 返回值为转换之前的数据格式</li>
+<li><code>CountVectorizer.get_feature_names()</code> 返回单词列表</li>
+</ul>
+<p>具体代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cv = CountVectorizer()</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> CountVectorizer</span><br><span class="line">data = cv.fit_transform([<span class="string">"life is short,i like python"</span>,<span class="string">"life is too long,i dislike python"</span>])</span><br><span class="line">print(cv.get_feature_names())</span><br><span class="line">print(data.toarray())</span><br></pre></td></tr></table></figure></p>
+<p>当然,这里只能处理英文,因为文本抽取默认是按照空格来进行分词的,如果我们要对中文来进行文本特征抽取,首先要使用jieba来分词,并拼成由空格分隔的字符串. 举个大栗子:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> CountVectorizer</span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cutword</span><span class="params">()</span>:</span></span><br><span class="line">    con1 = jieba.cut(<span class="string">"今天很残酷，明天更残酷，后天很美好，但绝对大部分是死在明天晚上，所以每个人不要放弃今天。"</span>)</span><br><span class="line">    con2 = jieba.cut(<span class="string">"我们看到的从很远星系来的光是在几百万年之前发出的，这样当我们看到宇宙时，我们是在看它的过去。"</span>)</span><br><span class="line">    con3 = jieba.cut(<span class="string">"如果只用一种方式了解某样事物，你就不会真正了解它。了解事物真正含义的秘密取决于如何将其与我们所了解的事物相联系。"</span>)</span><br><span class="line">    <span class="comment"># 转换成列表</span></span><br><span class="line">    content1 = list(con1)</span><br><span class="line">    content2 = list(con2)</span><br><span class="line">    content3 = list(con3)</span><br><span class="line">    <span class="comment"># 吧列表转换成字符串</span></span><br><span class="line">    c1 = <span class="string">' '</span>.join(content1)</span><br><span class="line">    c2 = <span class="string">' '</span>.join(content2)</span><br><span class="line">    c3 = <span class="string">' '</span>.join(content3)</span><br><span class="line">    <span class="keyword">return</span> c1, c2, c3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hanzivec</span><span class="params">()</span>:</span></span><br><span class="line">    c1, c2, c3 = cutword()</span><br><span class="line">    print(c1, c2, c3)</span><br><span class="line">    cv = CountVectorizer()</span><br><span class="line">    data = cv.fit_transform([c1, c2, c3])</span><br><span class="line">    print(cv.get_feature_names())</span><br><span class="line">    print(data.toarray())</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">        hanzivec()</span><br></pre></td></tr></table></figure></p>
+<h3 id="特征处理"><a href="#特征处理" class="headerlink" title="特征处理"></a>特征处理</h3><p>通过特定的统计方法（数学方法）将数据转换成算法要求的数据<br>特征处理的方法主要有:归一化,标准化</p>
+<h5 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h5><p>归一化首先在特征（维度）非常多的时候，可以防止某一维或某几维对数据影响过大，也是为了把不同来源的数据统一到一个参考区间下，这样比较起来才有意义，其次可以程序可以运行更快。 例如：一个人的身高和体重两个特征，假如体重50kg，身高175cm,由于两个单位不一样，数值大小不一样。如果比较两个人的体型差距时，那么身高的影响结果会比较大.<br>归一化数学上已经学过很多次了,这里就直接给出scikit_learn的相关操作.<br>归一化API为<code>sklearn.preprocessing.MinMaxScaler</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler</span><br><span class="line">mm = MinMaxScaler(feature_range=(<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line">data = mm.fit_transform([[<span class="number">90</span>,<span class="number">2</span>,<span class="number">10</span>,<span class="number">40</span>],[<span class="number">60</span>,<span class="number">4</span>,<span class="number">15</span>,<span class="number">45</span>],[<span class="number">75</span>,<span class="number">3</span>,<span class="number">13</span>,<span class="number">46</span>]])</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure></p>
+<h5 id="标准化"><a href="#标准化" class="headerlink" title="标准化"></a>标准化</h5><p>标准化是通过对原始数据进行变换把数据变换到均值为0,方差为1范围内,处理公式为<img src="/2018/10/10/机器学习-1/机器学习/./标准化.png" alt="blockchain">,其中μ是样本的均值，σ是样本的标准差，它们可以通过现有的样本进行估计，在已有的样本足够多的情况下比较稳定，适合嘈杂的数据场景.<br>sklearn标准化API:<code>scikit-learn.preprocessing.StandardScaler</code></p>
+<p>其中包含的方法有,- <code>StandardScaler.mean_</code>返回原始数据每列的平均值</p>
+<ul>
+<li><code>StandardScaler.std_</code>, 原始数据每列的方差</li>
+</ul>
+<p>同样举个栗子:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line">std = StandardScaler()</span><br><span class="line">data = std.fit_transform([[ <span class="number">1.</span>, <span class="number">-1.</span>, <span class="number">3.</span>],[ <span class="number">2.</span>, <span class="number">4.</span>, <span class="number">2.</span>],[ <span class="number">4.</span>, <span class="number">6.</span>, <span class="number">-1.</span>]])</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure></p>
+<h5 id="缺失值处理"><a href="#缺失值处理" class="headerlink" title="缺失值处理"></a>缺失值处理</h5><p>由于各种原因，许多现实世界的数据集包含缺少的值，通常编码为空白，NaN或其他占位符。然而，这样的数据集与scikit的分类器不兼容，它们假设数组中的所有值都是数字，并且都具有和保持含义。使用不完整数据集的基本策略是丢弃包含缺失值的整个行和/或列。然而，这是以丢失可能是有价值的数据（即使不完整）的代价。更好的策略是估算缺失值，即从已知部分的数据中推断它们。</p>
+<p>(1)填充缺失值<br>使用sklearn.preprocessing中的Imputer类进行数据的填充.</p>
+<p>具体的用法为<code>Imputer(missing_values=&#39;NaN&#39;, strategy=&#39;mean&#39;, axis=0)</code>,同样举个栗子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> Imputer</span><br><span class="line">im = Imputer(missing_values=<span class="string">'NaN'</span>, strategy=<span class="string">'mean'</span>, axis=<span class="number">0</span>)</span><br><span class="line">data = im.fit_transform([[<span class="number">1</span>, <span class="number">2</span>], [np.nan, <span class="number">3</span>], [<span class="number">7</span>, <span class="number">6</span>]])</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure></p>
+<p>(2)替换缺失值<br>使用pandas中的fillna来填充<br>数据降维也是我们在特征预处理中经常进行的操作,一般我们使用成分分析法PCA( Principal component analysis）。他的特点是保存数据集中对方差影响最大的那些特征，但是PCA极其容易受到数据中特征范围影响，所以在运用PCA前一定要做特征标准化，这样才能保证每维度特征的重要性等同。</p>
+<h5 id="降维"><a href="#降维" class="headerlink" title="降维"></a>降维</h5><p>数据降维也是我们在特征预处理中经常进行的操作,一般我们使用成分分析法PCA( Principal component analysis)。<br>这里的降维只是特征数量的减少,和我们想象中的不一样哦.<br><img src="/2018/10/10/机器学习-1/机器学习/./水壶.png" alt="blockchain"><br>我们可以形象的利用这个水壶来举例子,PCA法作用就是如何在在信息损失最小的情况下,用一张二维图来表示水壶.</p>
 <p>  PCA的特点是保存数据集中对方差影响最大的那些特征，但是PCA极其容易受到数据中特征范围影响，所以在运用PCA前一定要做特征标准化，这样才能保证每维度特征的重要性等同。<br>PCA的用法:  <code>PCA(n_components=None)</code>,其中n_components是指我们保留信息的百分比,比如0.9,表示降维信息的保留程度为90%</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line">pca = PCA(n_components=<span class="number">0.9</span>)</span><br><span class="line">data = pca.fit_transform([[<span class="number">2</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">6</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">8</span>],[<span class="number">5</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">1</span>]])</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure>
 <h4 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h4><p>特征选择是为了减少冗余,减小计算机的性能消耗(因为部分特征相关度高),同时消除部分噪点特征.在所有特征中选择部分作为训练集特征.<br>主要有以下三种方法:</p>
@@ -769,7 +936,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
