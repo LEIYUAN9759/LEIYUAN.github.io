@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Python学习,机器学习," />
 
 
 
@@ -79,13 +79,23 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="啰里啰嗦的圈圈">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="前言机器学习似乎是个很火的话题,人工智能更是浪潮之巅.而我既然学习了Python当然不能免俗,在国庆假期里偷偷看了一些机器学习的基本算法.发现以前自己感觉很专业的名词,比如朴素贝叶斯,随机森林,逻辑回归等等,在前人的基础上,调用API完成功能的代码,居然只有短短的几行.当然这也有可能是我只是刚刚看了一下scikitlearn这种封装的比较好的模块.接下来要把TensorFlow也粗浅的学一下,继续">
+<meta name="keywords" content="Python学习,机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习">
+<meta property="og:url" content="http://yoursite.com/2018/10/10/机器学习/index.html">
 <meta property="og:site_name" content="啰里啰嗦的圈圈">
+<meta property="og:description" content="前言机器学习似乎是个很火的话题,人工智能更是浪潮之巅.而我既然学习了Python当然不能免俗,在国庆假期里偷偷看了一些机器学习的基本算法.发现以前自己感觉很专业的名词,比如朴素贝叶斯,随机森林,逻辑回归等等,在前人的基础上,调用API完成功能的代码,居然只有短短的几行.当然这也有可能是我只是刚刚看了一下scikitlearn这种封装的比较好的模块.接下来要把TensorFlow也粗浅的学一下,继续">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/10/10/images/one_hot1.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/10/images/one_hot2.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/10/images/标准化.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/10/images/水壶.png">
+<meta property="og:updated_time" content="2018-10-10T14:13:59.488Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="啰里啰嗦的圈圈">
+<meta name="twitter:title" content="机器学习">
+<meta name="twitter:description" content="前言机器学习似乎是个很火的话题,人工智能更是浪潮之巅.而我既然学习了Python当然不能免俗,在国庆假期里偷偷看了一些机器学习的基本算法.发现以前自己感觉很专业的名词,比如朴素贝叶斯,随机森林,逻辑回归等等,在前人的基础上,调用API完成功能的代码,居然只有短短的几行.当然这也有可能是我只是刚刚看了一下scikitlearn这种封装的比较好的模块.接下来要把TensorFlow也粗浅的学一下,继续">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/10/images/one_hot1.png">
 
 
 
@@ -115,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/10/机器学习/"/>
 
 
 
 
 
-  <title>啰里啰嗦的圈圈</title>
+  <title>机器学习 | 啰里啰嗦的圈圈</title>
   
 
 
@@ -140,8 +150,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 	<a href="https://github.com/LEIYUAN9759/LEIYUAN9759.github.io"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,9 +253,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -276,9 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/10/机器学习/" itemprop="url">机器学习</a></h1>
+          <h1 class="post-title" itemprop="name headline">机器学习</h1>
         
 
         <div class="post-meta">
@@ -328,9 +335,7 @@
       
 
       
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>机器学习似乎是个很火的话题,人工智能更是浪潮之巅.而我既然学习了Python当然不能免俗,在国庆假期里偷偷看了一些机器学习的基本算法.发现以前自己感觉很专业的名词,比如朴素贝叶斯,随机森林,逻辑回归等等,在前人的基础上,调用API完成功能的代码,居然只有短短的几行.当然这也有可能是我只是刚刚看了一下scikitlearn这种封装的比较好的模块.接下来要把TensorFlow也粗浅的学一下,继续探索一下机器学习这个高深的领域.</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>机器学习似乎是个很火的话题,人工智能更是浪潮之巅.而我既然学习了Python当然不能免俗,在国庆假期里偷偷看了一些机器学习的基本算法.发现以前自己感觉很专业的名词,比如朴素贝叶斯,随机森林,逻辑回归等等,在前人的基础上,调用API完成功能的代码,居然只有短短的几行.当然这也有可能是我只是刚刚看了一下scikitlearn这种封装的比较好的模块.接下来要把TensorFlow也粗浅的学一下,继续探索一下机器学习这个高深的领域.</p>
 <h2 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h2><p>从数据中抽取出来的对预测结果有用的信息，通过专业的技巧进行数据处理，使得特征能在机器学习算法中发挥更好的作用。在数据获取的阶段 最初的原始特征数据集可能太大，或者信息冗余，因此在机器学习的应用中，一个初始步骤就是选择特征的子集，或构建一套新的特征集，减少功能来促进算法的学习，提高泛化能力和可解释性,这也就是我们所说的特征工程。<br>在特征工程阶段,我们主要的工作就是对数据的特征进行抽取,然后进行特征的预处理,最后进行特征的选择,done~~ 数据就处理成我们需要的格式啦!<br>今天就来介绍一下特征工程的各个阶段的各种操作.</p>
 <h3 id="特征抽取"><a href="#特征抽取" class="headerlink" title="特征抽取"></a>特征抽取</h3><h4 id="字典特征抽取"><a href="#字典特征抽取" class="headerlink" title="字典特征抽取"></a>字典特征抽取</h4><p>字典特征抽取调用的类:<code>sklearn.feature_extraction.DictVectorizer</code>.<br>将映射列表转换为Numpy数组或scipy.sparse矩阵<br>DictVectorizer的语法为:<br><code>DictVectorizer(saprse=True,....)</code><br>在其中包含的方法有:</p>
 <ul>
@@ -373,8 +378,6 @@
 </ul>
 <p>过滤式VarianceThreshold 是特征选择中的一项基本方法。它会移除所有方差不满足阈值的特征。默认设置下，它将移除所有方差为0的特征，即那些在所有样本中数值完全相同的特征。<br>假设我们要移除那些超过80%的数据都为1或0的特征.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> VarianceThreshold</span><br><span class="line">X = [[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>]]</span><br><span class="line">sel = VarianceThreshold(threshold=(<span class="number">.8</span> * (<span class="number">1</span> - <span class="number">.8</span>)))</span><br><span class="line">sel.fit_transform(X)</span><br><span class="line">array([[<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">1</span>]])</span><br></pre></td></tr></table></figure></p>
 
-          
-        
       
     </div>
     
@@ -389,326 +392,54 @@
 
     <div>
       
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
+        
+<div>
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/git学习笔记2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="雷源">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog_logo2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="啰里啰嗦的圈圈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/05/git学习笔记2/" itemprop="url">git学习笔记2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-05T10:07:06+08:00">
-                2018-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
         </div>
-      </header>
     
+</div>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>学习完git在本地的操作后，就要涉及到远端仓库的学习了，所以有关git的第二篇笔记就从远端仓库开始写起。</p>
-<h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><p>关于远程仓库的概念这里就不在赘述了，需要注意的是在使用GitHub时，我们需要添加ssh key，操作很简单。<br>使用远端仓库首先我们需要在GitHub或者码云上建立一个新的仓库，然后按照提示在本地仓库使用命令<code>git remote add origin git@github.com:leiyuan9759/learngit.git</code><br>,接着就能够把本地库的所有东西推送到远程仓库中去，命令为<code>git push -u origin master</code>,由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。从现在起，只要本地作了提交，就可以通过命令：<code>git push origin master</code></p>
-<ul>
-<li>对于开发者，一般来讲我们都是现有远程库，然后从远程仓库进行克隆，我们可以采用<code>git clone git@github.com:leiyuan9759/gitskills.git</code><br>这样就可以把代码copy到我们的机器上来。</li>
-</ul>
-<hr>
-<h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3><p>git的协同操作，我感觉最复杂的就是分支管理了，关于git分支的讲解可以参考<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000" target="_blank" rel="noopener">廖雪峰git笔记之创建与合并分支</a>。<br>git 分支操作</p>
-<ul>
-<li>创建分支<br>我们创建dev分支，然后切换到dev分支：<code>git checkout -b dev</code>,相当于以下两条命令：<code>git branch dev</code>,<code>git checkout dev</code></li>
-<li>查看分支 <code>git branch</code>,git branch命令会列出所有分支，当前分支前面会标一个*号</li>
-<li>切换分支 <code>git checkout master</code>,切换为master分支。</li>
-<li>合并分支 <code>git merge dev</code>,git merge命令用于合并指定分支到当前分支。</li>
-<li>删除分支 <code>git branch -d dev</code></li>
-<li>合并分支的策略<br>通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。命令为<code>git merge --no-ff -m &quot;merge with no-ff&quot; dev</code>,其中-m 是添加的备注信息</li>
-</ul>
-<hr>
-<h3 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h3><p>多人协作的工作模式通常是这样：<br>首先，可以试图用<code>git push origin &lt;branch-name&gt;</code>推送自己的修改；<br>如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；<br>如果合并有冲突，则解决冲突，并在本地提交；<br>没有冲突或者解决掉冲突后，再用<code>git push origin &lt;branch-name&gt;</code>推送就能成功！<br>如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令<code>git branch --set-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</code>。</p>
-<p>多人协助常用命令：</p>
-<ul>
-<li>查看远程库信息，使用git remote -v；本地新建的分支如果不推送到远程，对其他人就是不可见的；</li>
-<li>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</li>
-<li>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致</li>
-<li>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；</li>
-<li>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</li>
-</ul>
-<hr>
-<p> 关于git的使用还有打个标签的操作，感觉比较简单，就不写了。<br> git的学习到此就结束了</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/git学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="雷源">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog_logo2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="啰里啰嗦的圈圈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/04/git学习笔记/" itemprop="url">git学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T19:27:53+08:00">
-                2018-09-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/Python学习/" rel="tag"># Python学习</a>
           
-            
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
           
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>很早就听说过版本控制工具在今后的工作当中是是必不可少的,但是平时因为是自己一个人在进行研究和学习,对git的使用就怀着一种偷懒的态度,感觉平时不使用git也可以完成平时的工作,对git就只限于了解.在暑假的实习中,经理给我说:”其实有些时候,确实是可以不使用git的,但是只有你有这个思想,我们才会感觉你是同类”.到这时才感受到git的重要性,所以我决定从新梳理总结一下git的<br>使用.本篇笔记主要是学习廖雪峰的git教程后的笔记,但是感觉已经够用了,以后有时间再去git官网参阅文档.<br>我对于git主要还是分不清楚工作区/暂存区和远端仓库之间的关系, 对于命令的掌握也就无从谈起了,所以对git的学习还是要从基础学起.</p>
-<h3 id="git简介"><a href="#git简介" class="headerlink" title="git简介"></a>git简介</h3><p>关于git的介绍也不用多说,廖雪峰说git是世界上最先进的分布式版本控制系统,帮助我们(特别是我这种小白)结束了手动管理多个版本的史前时代,进入21世纪.既然说到分布式我们就要了解一下什么是分布式系统,而在此之前我们还要了解一下与之对应的集中式系统.</p>
-<ul>
-<li>集中式系统是指版本库在中央服务器上,所有的人都要先从服务器上获取最新版本,然后干活,接着把自己的工作提交到中央数据库.集中式系统必须要联网,这样才能提交代码.</li>
-<li>分布式系统每个人的电脑上都是一个完整的版本库,工作时候不需要联网,大多数操作都像是在本地完成的,当然也需要有一个中央服务器来方便大家交换代码.</li>
-</ul>
-<h3 id="git的基本操作"><a href="#git的基本操作" class="headerlink" title="git的基本操作"></a>git的基本操作</h3><h4 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h4><p>版本库就是一个目录，类似一个仓库，之前爱这个目录里所有的文件都可以使用git来进行管理。创建一个版本库的操作也非常简单，只要创建一个空白的文件夹，然后打开git bash,使用<code>git init</code>命令就可以把这个目录变成git可以管理的 仓库。为了避免问题出现，这个目录的路径名最好是没有中文的。</p>
-<h4 id="提交操作"><a href="#提交操作" class="headerlink" title="提交操作"></a>提交操作</h4><p>git的基本操作主要是<code>add commit push</code>三个，将代码提交到本地或者是远端仓库，掌握这三个命令就能够完成平时的大部分工作。<br>add 是把文件加入到git仓库中去的，通常进行的操作就是<code>git add 文件名`</code><br>使用commitm命令时要添加一些信息说明本次提交的内容，这样在版本回退时候才能够清楚的看到本次提交所进行的操作。例如，<code>git commit -m &quot;添加readme文件&quot;</code>。</p>
-<h4 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h4><p>git做为版本控制工具是可以随时吃“后悔药”的，也就是我们所说的版本回退。进行版本回退主要涉及的命令是reset。<br>在进行版本回退时，我们需要查看我们提交的历史记录，查看历史提交记录的命令是：<code>git log</code>,这时所有的提交日志会按照从近到远显示，如果嫌弃输出的信息太多，可以使用命令<code>git log --pretty=online</code>.</p>
-<p>好了，现在我们准备把readme.txt回退到上一个版本，怎么做呢？<br>首先，Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本，也就是最新的提交版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。举个例子<code>git reset --hard HEAD^</code>， 就可以返回到上个版本。<br>在返回上个版本后再使用<code>git log</code>就会发现，找不到上一次提交的版本，这时就可以采用<br>命令<code>git reflog</code>，这样可以查看到每一次命令，再3使用<code>git reset</code>命令回退。</p>
-<h4 id="撤销操作"><a href="#撤销操作" class="headerlink" title="撤销操作"></a>撤销操作</h4><p><code>git checkout -- file</code>可以丢弃工作区的修改：</p>
-<p><code>git checkout -- readme.txt</code><br>命令git checkout – readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：<br>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；<br>一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。<br>总之，就是让这个文件回到最近一次git commit或git add时的状态。<br>如果已经提交到暂存区中，那么要使用回退，用命令<code>git reset HEAD &lt;file&gt;</code>可以把暂存区的修改撤销掉（unstage），重新放回工作区,然后<code>git checkout -- readme.txt</code></p>
-<h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h4><p>删除文件，现在文件管理器中把文件删除，然后使用命令<code>git rm test.txt</code> 和<code>git commit -m &quot;删除文件夹&quot;</code><br>如果误删文件，我们可以使用<code>git checkout -- readme.txt</code>撤回工作区</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/05/git学习笔记2/" rel="next" title="git学习笔记2">
+                <i class="fa fa-chevron-left"></i> git学习笔记2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -718,10 +449,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -729,6 +461,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -749,8 +485,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -830,6 +575,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征工程"><span class="nav-number">2.</span> <span class="nav-text">特征工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特征抽取"><span class="nav-number">2.1.</span> <span class="nav-text">特征抽取</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字典特征抽取"><span class="nav-number">2.1.1.</span> <span class="nav-text">字典特征抽取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文本特征抽取"><span class="nav-number">2.1.2.</span> <span class="nav-text">文本特征抽取</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征处理"><span class="nav-number">2.2.</span> <span class="nav-text">特征处理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#归一化"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">归一化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#标准化"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">标准化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缺失值处理"><span class="nav-number">2.2.0.3.</span> <span class="nav-text">缺失值处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#降维"><span class="nav-number">2.2.0.4.</span> <span class="nav-text">降维</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征选择"><span class="nav-number">2.2.1.</span> <span class="nav-text">特征选择</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -973,6 +734,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
