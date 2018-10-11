@@ -259,6 +259,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/机器学习-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="雷源">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog_logo2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="啰里啰嗦的圈圈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/11/机器学习-2/" itemprop="url">机器学习之k-近邻算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T20:12:48+08:00">
+                2018-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>机器学习的算法分为两种:监督学习和非监督学习,</p>
+<ul>
+<li>监督学习，可以由输入数据中学到或建立一个模型，并依此模式推测新的结果。输入数据是由输入特征值和目标值所组成。函数的输出可以是一个连续的值（称为回归），或是输出是有限个离散值（称作分类）。</li>
+<li>非监督学习,可以由输入数据中学到或建立一个模型，并依此模式推测新的结果。输入数据是<br>由输入特征值所组成。</li>
+</ul>
+<p>两种算法的区别主要就在于有没有目标值.在这里也简要介绍一下我所了解到的算法</p>
+<p>监督学习主要有:</p>
+<ul>
+<li>分类 : k-近邻算法,决策树,朴素贝叶斯,逻辑回归,支持向量机等等</li>
+<li>回归 : 线性回归, 岭回归</li>
+<li>标注 : 隐马尔可夫模型<br>非监督学习主要是:聚类算法k-means</li>
+</ul>
+<p>今天介绍的就是机器学习最简单的算法k-近邻算法,当然是调用scikit-learn的API,我自己目前可是写不出来的……</p>
+<h3 id="k-近邻算法的简要介绍"><a href="#k-近邻算法的简要介绍" class="headerlink" title="k-近邻算法的简要介绍"></a>k-近邻算法的简要介绍</h3><p>k-近邻算法是通过测量不同特征值之间的距离来进行分类</p>
+<blockquote>
+<p>优点：精度高、对异常值不敏感、无数据输入假定</p>
+</blockquote>
+<blockquote>
+<p>缺点：计算复杂度高、空间复杂度高</p>
+</blockquote>
+<blockquote>
+<p>使用数据范围：数值型和标称型</p>
+</blockquote>
+<p>举个电影分类的例子,来分析一下k-近邻算法</p>
+<p>假如两种类型的电影，动作片和爱情片。动作片中打斗镜头的次数较多，而爱情片中接吻镜头相对更多。当然动作片中也有一些接吻镜头，爱情片中也会有一些打斗镜头。所以不能单纯通过是否存在打斗镜头或者接吻镜头来判断影片的类别。那么现在我们有6部影片已经明确了类别，也有打斗镜头和接吻镜头的次数，还有一部电影类型未知。<br><img src="/2018/10/11/机器学习-2/电影数据.PNG" alt="电影数据"><br>那么我们使用K-近邻算法来分类爱情片和动作片：存在一个样本数据集合，也叫训练样本集，样本个数M个，知道每一个数据特征与类别对应关系，然后存在未知类型数据集合1个，那么我们要选择一个测试样本数据中与训练样本中M个的距离，排序过后选出最近的K个，这个取值一般不大于20个。选择K个最相近数据中次数最多的分类。那么我们根据这个原则去判断未知电影的分类.<br><img src="/2018/10/11/机器学习-2/电影距离数据.PNG" alt="距离数据"><br>我们假设K为3，那么排名前三个电影的类型都是爱情片，所以我们判定这个未知电影也是一个爱情片,这也就是k-近邻算法的基本思想.</p>
+<h3 id="k-近邻算法的scikit-learn"><a href="#k-近邻算法的scikit-learn" class="headerlink" title="k-近邻算法的scikit-learn"></a>k-近邻算法的scikit-learn</h3><p>k-近邻算法所调用的API <code>sklearn.neighbors.KNeighborsClassifier(n_neighbors=5,algorithm=&#39;auto&#39;)</code></p>
+<p>n_neighbors:int(默认=5), algorithm：{‘auto’，‘ball_tree’，‘kd_tree’，‘brute’}，可选用于计算最近邻居的算法：‘ball_tree’将会使用 BallTree，‘kd_tree’将使用 KDTree。‘auto’将尝试根据传递给fit方法的值来决定最合适的算法。 (不同实现方式影响效率)</p>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p>这里使用kaggle中的一个预测入住位置的一个案例,来进行k-近邻算法的练习. 数据来源<a href="https://www.kaggle.com/c/facebook-v-predicting-check-ins" target="_blank" rel="noopener">https://www.kaggle.com/c/facebook-v-predicting-check-ins</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knncls</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    K-近邻预测用户签到位置</span></span><br><span class="line"><span class="string">    :return:None</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 读取数据</span></span><br><span class="line">    data = pd.read_csv(<span class="string">"./data/FBlocation/train.csv"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># print(data.head(10))</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 处理数据</span></span><br><span class="line">    <span class="comment"># 1、缩小数据,查询数据晒讯</span></span><br><span class="line">    data = data.query(<span class="string">"x &gt; 1.0 &amp;  x &lt; 1.25 &amp; y &gt; 2.5 &amp; y &lt; 2.75"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 处理时间的数据</span></span><br><span class="line">    time_value = pd.to_datetime(data[<span class="string">'time'</span>], unit=<span class="string">'s'</span>)</span><br><span class="line"></span><br><span class="line">    print(time_value)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 把日期格式转换成 字典格式</span></span><br><span class="line">    time_value = pd.DatetimeIndex(time_value)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 构造一些特征</span></span><br><span class="line">    data[<span class="string">'day'</span>] = time_value.day</span><br><span class="line">    data[<span class="string">'hour'</span>] = time_value.hour</span><br><span class="line">    data[<span class="string">'weekday'</span>] = time_value.weekday</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 把时间戳特征删除</span></span><br><span class="line">    data = data.drop([<span class="string">'time'</span>], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    print(data)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 把签到数量少于n个目标位置删除</span></span><br><span class="line">    place_count = data.groupby(<span class="string">'place_id'</span>).count()</span><br><span class="line"></span><br><span class="line">    tf = place_count[place_count.row_id &gt; <span class="number">3</span>].reset_index()</span><br><span class="line"></span><br><span class="line">    data = data[data[<span class="string">'place_id'</span>].isin(tf.place_id)]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 取出数据当中的特征值和目标值</span></span><br><span class="line">    y = data[<span class="string">'place_id'</span>]</span><br><span class="line"></span><br><span class="line">    x = data.drop([<span class="string">'place_id'</span>], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 进行数据的分割训练集合测试集</span></span><br><span class="line">    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=<span class="number">0.25</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 特征工程（标准化）</span></span><br><span class="line">    std = StandardScaler()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 对测试集和训练集的特征值进行标准化</span></span><br><span class="line">    x_train = std.fit_transform(x_train)</span><br><span class="line"></span><br><span class="line">    x_test = std.transform(x_test)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 进行算法流程 # 超参数</span></span><br><span class="line">    knn = KNeighborsClassifier()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># fit， predict,score</span></span><br><span class="line">    knn.fit(x_train, y_train)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 得出预测结果</span></span><br><span class="line">    y_predict = knn.predict(x_test)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"预测的目标签到位置为："</span>, y_predict)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 得出准确率</span></span><br><span class="line">    print(<span class="string">"预测的准确率:"</span>, knn.score(x_test, y_test))</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">      knncls()</span><br></pre></td></tr></table></figure>
+<p>好啦今天就到这里啦~</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/10/机器学习-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -936,7 +1089,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
